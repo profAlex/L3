@@ -12,4 +12,3 @@ var HttpStatus;
     HttpStatus[HttpStatus["NotFound"] = 404] = "NotFound";
     HttpStatus[HttpStatus["InternalServerError"] = 500] = "InternalServerError";
 })(HttpStatus || (exports.HttpStatus = HttpStatus = {}));
-;
