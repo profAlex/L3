@@ -22,8 +22,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const setup_app_1 = require("./setup-app");
+const mongo_db_1 = require("./db/mongo.db");
 const app = (0, express_1.default)();
 (0, setup_app_1.setupApp)(app);
 const PORT = process.env.PORT || 3004;
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+const appStart = async () => {
+    await (0, mongo_db_1.runDB)();
+    app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+};
 module.exports = app;

@@ -4,12 +4,13 @@ import {Driver} from "../drivers/driver-types";
 
 const DRIVER_COLLECTION_NAME = 'drivers';
 const DB_NAME = 'drivers_db';
+const URI = "mongodb+srv://admin:admin@learningcluster.f1zm90x.mongodb.net/?retryWrites=true&w=majority&appName=LearningCluster";
 
 export let client: MongoClient;
 export let driverCollection: Collection<Driver>;
 
-export async function runDB(uri: string) {
-    client = new MongoClient(uri);
+export async function runDB() {
+    client = new MongoClient(URI);
     const db: Db = client.db(DB_NAME);
     driverCollection = db.collection<Driver>(DRIVER_COLLECTION_NAME);
 

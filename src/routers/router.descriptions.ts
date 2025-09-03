@@ -4,15 +4,16 @@ import {ValidationErrorType} from "../core/validation-error";
 import {driverInputDtoValidation} from "../validation/driver-dto-validation_middleware";
 import {HttpStatus} from "../core/http-statuses";
 // import {Driver, DriverStatus} from "../drivers/driver-types";
-import {driversRepository} from "../repositories/drivers.repository";
+import {driversRepository} from "../repositories/drivers.repository.mongodb";
 
 
-export const getDriversList = (req: Request, res: Response) => {
-    res.status(200).json(driversRepository.findALl());
+export const getDriversList = async (req: Request, res: Response) => {
+    const driversList = await driversRepository.findALl()
+    res.status(200).json(driversList);
 };
 
-export const getDriverById = (req: Request, res: Response) => {
-    const driver = driversRepository.findById(+req.params.id);
+export const getDriverById = async (req: Request, res: Response) => {
+    const driver = await driversRepository.findById(+req.params.id);
 
     if(!driver) {
         res.status(404).send({ message: "Driver not found" });
@@ -22,7 +23,7 @@ export const getDriverById = (req: Request, res: Response) => {
     res.status(HttpStatus.Ok).send(driver);
 };
 
-export const createNewDriver = (req: Request, res: Response) => {
+export const createNewDriver = async (req: Request, res: Response) => {
     // const errors: ValidationErrorType[] = driverInputDtoValidation(req.body);
 
     // if(errors.length > 0) {
@@ -30,7 +31,7 @@ export const createNewDriver = (req: Request, res: Response) => {
     //     return;
     // }
 
-    const newDriver = driversRepository.createDriver(req.body);
+    const newDriver = await driversRepository.createDriver(req.body);
 
     res.status(201).send(newDriver);
 };

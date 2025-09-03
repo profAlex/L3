@@ -19,12 +19,16 @@
 
 import express from "express";
 import {setupApp} from "./setup-app";
+import {runDB} from "./db/mongo.db";
 
 const app = express();
 setupApp(app);
 
 const PORT = process.env.PORT || 3004;
 
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+const appStart = async () => {
+    await runDB();
+    app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+};
 
 module.exports = app;

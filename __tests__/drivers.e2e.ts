@@ -7,7 +7,7 @@ import { setupApp } from "../src/setup-app";
 import { HttpStatus } from "../src/core/http-statuses";
 import { DriverInputDto } from "../src/drivers/driver.input-dto"
 import {DriverStatus} from "../src/drivers/driver-types";
-import {driversRepository} from "../src/repositories/drivers.repository";
+import {driversRepository} from "../src/repositories/drivers.repository.mongodb";
 
 describe("Test API", () => {
 
