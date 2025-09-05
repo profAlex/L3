@@ -1,7 +1,6 @@
 import {Collection, Db, MongoClient} from "mongodb";
 import {Driver} from "../drivers/driver-types";
 
-
 const DB_NAME = 'drivers_db';
 const DRIVER_COLLECTION_NAME = 'drivers_collection';
 const URI = "mongodb+srv://admin:admin@learningcluster.f1zm90x.mongodb.net/?retryWrites=true&w=majority&appName=LearningCluster";
@@ -22,6 +21,5 @@ export async function runDB() {
     catch (error) {
         await client.close();
         throw new Error(`Database not connected: ${error}`);
-
     }
 }

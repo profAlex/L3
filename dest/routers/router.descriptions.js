@@ -19,11 +19,6 @@ const getDriverById = async (req, res) => {
 };
 exports.getDriverById = getDriverById;
 const createNewDriver = async (req, res) => {
-    // const errors: ValidationErrorType[] = driverInputDtoValidation(req.body);
-    // if(errors.length > 0) {
-    //     res.status(HttpStatus.BadRequest).send({ errors: errors });
-    //     return;
-    // }
     const newDriver = await drivers_repository_mongodb_1.driversRepository.createDriver(req.body);
     res.status(201).send(newDriver);
 };

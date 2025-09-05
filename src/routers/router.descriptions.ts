@@ -24,14 +24,7 @@ export const getDriverById = async (req: Request, res: Response) => {
 };
 
 export const createNewDriver = async (req: Request, res: Response) => {
-    // const errors: ValidationErrorType[] = driverInputDtoValidation(req.body);
-
-    // if(errors.length > 0) {
-    //     res.status(HttpStatus.BadRequest).send({ errors: errors });
-    //     return;
-    // }
 
     const newDriver = await driversRepository.createDriver(req.body);
-
     res.status(201).send(newDriver);
 };

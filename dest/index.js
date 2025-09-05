@@ -29,7 +29,6 @@ const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3004;
 const appStart = async () => {
     await (0, mongo_db_1.runDB)();
-    // console.log('TEST');
     app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 };
 exports.appStart = appStart;
