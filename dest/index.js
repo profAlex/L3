@@ -20,6 +20,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.appStart = void 0;
 const express_1 = __importDefault(require("express"));
 const setup_app_1 = require("./setup-app");
 const mongo_db_1 = require("./db/mongo.db");
@@ -28,6 +29,9 @@ const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3004;
 const appStart = async () => {
     await (0, mongo_db_1.runDB)();
+    // console.log('TEST');
     app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 };
+exports.appStart = appStart;
+(0, exports.appStart)();
 module.exports = app;

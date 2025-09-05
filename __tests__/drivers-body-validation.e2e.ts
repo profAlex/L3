@@ -3,6 +3,7 @@ import express = require('express');
 import { setupApp } from "../src/setup-app";
 import { HttpStatus } from "../src/core/http-statuses";
 import { DriverInputDto } from "../src/drivers/driver.input-dto"
+import {runDB} from "../src/db/mongo.db";
 
 describe("Test input data validation", () => {
     const app = express();
@@ -20,11 +21,15 @@ describe("Test input data validation", () => {
         vehicleFeatures: [],
     };
 
-    beforeAll(async () => {
-        await request(app).delete('/api/testing/all-data').expect(HttpStatus.NoContent);
-    });
+    // beforeAll(async () => {
+    //     await runDB();
+    //
+    //     await request(app).delete('/api/testing/all-data').expect(HttpStatus.NoContent);
+    // });
 
     it("This should not be registered in database", async() => {
+        await runDB();
+
         const incorrectTestDriverData: DriverInputDto = {
             ...correctTestDriverData,
             name: '  ',

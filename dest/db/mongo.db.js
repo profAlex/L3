@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.driverCollection = exports.client = void 0;
 exports.runDB = runDB;
 const mongodb_1 = require("mongodb");
-const DRIVER_COLLECTION_NAME = 'drivers';
 const DB_NAME = 'drivers_db';
+const DRIVER_COLLECTION_NAME = 'drivers_collection';
 const URI = "mongodb+srv://admin:admin@learningcluster.f1zm90x.mongodb.net/?retryWrites=true&w=majority&appName=LearningCluster";
 async function runDB() {
     exports.client = new mongodb_1.MongoClient(URI);

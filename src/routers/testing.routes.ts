@@ -5,9 +5,9 @@ import {driversRepository} from "../repositories/drivers.repository.mongodb";
 
 export const testingRouter = Router();
 
-testingRouter.delete('/all-data', (req: Request, res: Response) => {
+testingRouter.delete('/all-data', async (req: Request, res: Response) => {
 
-    driversRepository.deleteAllDrivers();
+    await driversRepository.deleteAllDrivers();
     res.sendStatus(204);
 
 });

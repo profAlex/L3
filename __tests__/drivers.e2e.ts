@@ -8,9 +8,13 @@ import { HttpStatus } from "../src/core/http-statuses";
 import { DriverInputDto } from "../src/drivers/driver.input-dto"
 import {DriverStatus} from "../src/drivers/driver-types";
 import {driversRepository} from "../src/repositories/drivers.repository.mongodb";
+import {appStart} from "../src";
+import {runDB} from "../src/db/mongo.db";
 
 describe("Test API", () => {
 
+
+    // appStart();
     const app = express();
     setupApp(app);
 
@@ -27,17 +31,22 @@ describe("Test API", () => {
     };
 
     beforeAll(async () => {
+        await runDB();
         const res = await request(app).delete('/api/testing/all-data');
         expect(res.status).toBe(HttpStatus.NoContent);
     });
 
     it("GET /api/ - should respond with a 200 and a starting message", async() => {
+        //await runDB();
+
         const res = await request(app).get('/');
         expect(res.status).toBe(HttpStatus.Ok);
-        expect(res.text).toBe("Hello my first BACK-END APP!");
+        expect(res.text).toBe("All good!");
     });
 
     it("POST drivers/ - should create a driver", async() => {
+       //await runDB();
+
        const newDriver: DriverInputDto = {
            ...testDriverData
        };
@@ -54,6 +63,9 @@ describe("Test API", () => {
     });
 
     it("GET /drivers - should return list of registered drivers", async() => {
+        //await runDB();
+
+
         const newDriver: DriverInputDto = {
             ...testDriverData,
             name: 'Valentin2',
@@ -79,6 +91,9 @@ describe("Test API", () => {
     });
 
     it('GET /drivers/:id - should return driver by id; ', async () => {
+        //await runDB();
+
+
         const createResponse = await request(app)
             .post('/api/drivers')
             .set('Authorization', 'Basic ' + 'YWRtaW46cXdlcnR5')

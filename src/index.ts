@@ -26,9 +26,13 @@ setupApp(app);
 
 const PORT = process.env.PORT || 3004;
 
-const appStart = async () => {
+export const appStart = async () => {
     await runDB();
+    // console.log('TEST');
+
     app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 };
+
+appStart();
 
 module.exports = app;
